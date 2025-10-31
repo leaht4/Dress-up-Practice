@@ -10,7 +10,7 @@ const clothingItems = [
 
 clothingItems.forEach(item => {
     const img = document.createElement('img');
-    img.src = item.image;
+    img.src = item.image;2
     img.classList.add('clothing-item');
     img.addEventListener('click', () => {
         character.style.backgroundImage = `url('${item.image}')`;
