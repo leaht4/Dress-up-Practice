@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Splash Screen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Full-screen splash container */
+        #splash-screen {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
+        }
+
+        /* Video Styling */
+        #splash-video {
+            width: 80%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen" onclick="hideSplashScreen()">
+        <video id="splash-video" autoplay muted>
+            <source src="logoPractice.mp4" type="video/mp4"> <!-- Replace with your video file -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <main style="display: none;">
+        <h1>Welcome to the Main Page</h1>
+        <p>This is your app content after the splash screen.</p>
+    </main>
+
+    <script>
+        const video = document.getElementById("splash-video");
+        const splashScreen = document.getElementById("splash-screen");
+        const mainContent = document.querySelector("main");
+
+        function hideSplashScreen() {
+            splashScreen.style.opacity = "0";
+            setTimeout(() => {
+                splashScreen.style.display = "none";
+                mainContent.style.display = "block"; // Show main content
+            }, 1000);
+        }
+
+        // Hide splash when video ends
+        video.onended = hideSplashScreen;
+
+        // Allow skipping animation by clicking anywhere
+        splashScreen.addEventListener("click", hideSplashScreen);
+    
+    </script>
+
+</body>
+</html>
